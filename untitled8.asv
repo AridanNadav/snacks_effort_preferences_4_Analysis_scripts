@@ -1,0 +1,20 @@
+colvec=(1:3:36);
+for p=1:25
+    spot=1;
+
+ for nad=9:2:31
+     col=colvec(spot);
+ p   
+FIND1=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[1,4,7])==1);
+FIND2=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[2,5,8])==1);
+FIND3=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[3,6,9])==1);
+
+eva4choice{FIND1+162*(p-1),nad}=big_table(p,col+1);
+eva4choice{FIND1+162*(p-1),nad+1}=big_table(p,col+2);
+eva4choice{FIND2+162*(p-1),nad}=big_table(p,col);
+eva4choice{FIND2+162*(p-1),nad+1}=big_table(p,col+2);
+eva4choice{FIND3+162*(p-1),nad}=big_table(p,col);
+eva4choice{FIND3+162*(p-1),nad+1}=big_table(p,col+1);
+spot=spot+1
+ end   
+end

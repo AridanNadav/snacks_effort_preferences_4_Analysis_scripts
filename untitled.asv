@@ -1,0 +1,13 @@
+for u=1:length(allsubT)
+if allsubT(u,13)==999
+allsubT(u,:)=[]    
+end   
+    
+end
+
+
+for u=1:length()
+copallsubT
+
+
+sum(copallsubT(:,13) == 999)

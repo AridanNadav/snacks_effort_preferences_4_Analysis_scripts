@@ -1,0 +1,9 @@
+addnew=zeros(4050,3);
+
+for sub=1:25
+addnew((sub-1)*162+1:(sub)*162+1,1)    = MEANS(sub,1);
+    addnew((sub-1)*162+1:(sub)*162+1,2)  =  MEANS(sub,2);
+addnew((sub-1)*162+1:(sub)*162+1,3)    = MEANS(sub,3);
+
+    
+end

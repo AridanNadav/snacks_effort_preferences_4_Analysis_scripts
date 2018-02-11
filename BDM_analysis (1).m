@@ -1,0 +1,5 @@
+% BDM_analysis
+
+load_bdm1_bdm2
+BDM1_histogram
+d_of_means_BDM

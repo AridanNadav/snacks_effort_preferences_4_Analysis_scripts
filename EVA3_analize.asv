@@ -1,0 +1,50 @@
+%% EVA3_analize
+
+% run from  output folder
+% require results folder with subfolders: singleSUB,allSUBS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% first read all data into tabels
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set result_folder
+splitpath = strsplit(pwd,'/');
+splitpath_minData=[splitpath(1:end-1)];
+sub_fold=strjoin(splitpath_minData,'/');
+allSUBS_result_folder=[sub_fold '/results/allSUBS'];
+singleSUB_result_folder=[sub_fold '/results/singleSUB'];
+
+% subjects to analys
+ALLsubjects=[301]; % subject to include
+subjects2EXclud= [];% subject to exclude
+subjects=ALLsubjects(~ismember(ALLsubjects,subjects2EXclud));
+forloop=length(subjects);
+
+%% single subject level
+allSubstable = array2table(zeros(0,25));
+allSubstable.Properties.VariableNames(1)= {'subject'};
+allSubstable.Properties.VariableNames(2)= {'order'};
+
+for subjectIndex = 1:forloop
+    % sub level variabels
+    sub_name=num2str(subjects(subjectIndex));
+    load(['EVA3_' sub_name '_exp_parameters.mat'],'order')
+    
+    allSubstable.subject(forloop)=sub_name;
+    allSubstable.order(forloop)=order;
+    
+    BDM_analysis
+    Probe_analysis
+    grip_practice_and_VAS_analysis
+    VAS_recognition
+    BR_D
+    
+    
+end % single sub for loop
+%%
+allSubstable.Properties.RowNames(end+1) = {'all_subject_means'};
+for var_num = 1:width(allSubstable)
+    if var_num < 3
+        allSubstable.all_subject_means = 0;
+    else allSubstable.all_subject_means(var_num) = mean(allSubstable{:,var_num});
+    end
+end

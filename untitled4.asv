@@ -1,0 +1,95 @@
+for p=1:25
+    
+tblB{162*(p-1)+1:p*162,21}   = PE_change(p,1) 
+tblB{162*(p-1)+1:p*162,22}   = PE_change(p,2) 
+
+    
+end
+
+sizeT=size(tblB);
+for p=3889:sizeT(1)
+    p
+PairType= tblB{p,8};   
+if ismember(PairType,(1:3));
+tblB{p,19}  =1;
+elseif ismember(PairType,(4:6)) 
+tblB{p,19}  =2;
+elseif ismember(PairType,(7:9)) 
+tblB{p,19}  =3;
+else
+    warning('bad bad bad')
+    
+    
+    
+    
+end
+end
+
+
+sizeT=size(tblB);
+for p=3889:sizeT(1)
+    p
+PairType= tblB{p,8};   
+if ismember(PairType,[1,4,7]);
+tblB{p,20}  =1;
+elseif ismember(PairType,[2,5,8]) 
+tblB{p,20}  =2;
+elseif ismember(PairType,[3,6,9]) 
+tblB{p,20}  =3;
+else
+    warning('bad bad bad')
+    
+end
+end
+
+
+sizeT=size(tblB);
+
+for p=1:sizeT(1)
+    p
+PairType= tblB{p,8};   
+if ismember(PairType,[1,4,7]);
+tblB{p,23}  big_table()=;
+tblB{p,24}  =;
+
+elseif ismember(PairType,[2,5,8]) 
+tblB{p,23}  =;
+tblB{p,24}  =;
+elseif ismember(PairType,[3,6,9]) 
+tblB{p,23}  =;
+tblB{p,24}  =;
+else
+    warning('bad bad bad')
+    
+end
+end
+
+
+for k=1:162
+    
+eva4choice{162*(p-1)+1:p*162,l+23}
+    
+    
+
+end
+
+colvec=(1:3:36);
+for p=1:25
+    spot=1;
+
+ for nad=23:2:46 
+     col=colvec(spot);
+ p   
+FIND1=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[1,4,7])==1);
+FIND2=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[2,5,8])==1);
+FIND3=find(ismember(eva4choice{162*((p-1))+1:p*162,8},[3,6,9])==1);
+
+eva4choice{FIND1+162*(p-1),nad}=big_table(p,col+1);
+eva4choice{FIND1+162*(p-1),nad+1}=big_table(p,col+2);
+eva4choice{FIND2+162*(p-1),nad}=big_table(p,col);
+eva4choice{FIND2+162*(p-1),nad+1}=big_table(p,col+2);
+eva4choice{FIND3+162*(p-1),nad}=big_table(p,col);
+eva4choice{FIND3+162*(p-1),nad+1}=big_table(p,col+1);
+spot=spot+1
+ end   
+end

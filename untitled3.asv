@@ -1,0 +1,56 @@
+Probe_recode_mac
+recalc_is_choice1
+recode_probe_from_BR2
+
+
+ order=subject_data(1,3);
+    
+
+    PairType=subject_data(:,14);
+    Outcome=subject_data(:,15);
+    Rank_left=subject_data(:,10);
+    Rank_right=subject_data(:,11);
+     probe_results(1,1)=subjects(subjectIndex);
+
+    probe_results(1,2)=order;
+    
+    
+    probe_results(1,3)=sum(PairType==1&Outcome==1)/sum(PairType==1&Outcome~=999);  %    %High_90_vs_High_50     %1 
+    probe_results(1,4)=sum(PairType==2&Outcome==1)/sum(PairType==2&Outcome~=999);  %     %High_90_vs_High_10     %2
+    probe_results(1,5)=sum(PairType==3&Outcome==1)/sum(PairType==3&Outcome~=999);  %     %High_50_vs_High_10     %3
+    probe_results(1,6)=sum(PairType==4&Outcome==1)/sum(PairType==4&Outcome~=999); %     %Medium_90_vs_Medium_50 %4
+    probe_results(1,7)=sum(PairType==5&Outcome==1)/sum(PairType==5&Outcome~=999); %     %Medium_90_vs_Medium_10 %5
+    probe_results(1,8)=sum(PairType==6&Outcome==1)/sum(PairType==6&Outcome~=999); %     %Medium_50_vs_Medium_10 %6
+    probe_results(1,9)=sum(PairType==7&Outcome==1)/sum(PairType==7&Outcome~=999); %     %Low_90_vs_Low_50       %7
+    probe_results(1,10)=sum(PairType==8&Outcome==1)/sum(PairType==8&Outcome~=999); %     %Low_90_vs_Low_10       %8
+    probe_results(1,11)=sum(PairType==9&Outcome==1)/sum(PairType==9&Outcome~=999); %     %Low_50_vs_Low_10       %9
+
+
+%! end
+
+Probe_results_table = cell(1+size(probe_results,1),size(probe_results,2));
+Titles = {'Subject', 'Order', 'High_90_vs_High_50', 'High_90_vs_High_10',...
+    'High_50_vs_High_10', 'Medium_90_vs_Medium_50', 'Medium_90_vs_Medium_10',...
+    'Medium_50_vs_Medium_10', 'Low_90_vs_Low_50', 'Low_90_vs_Low_10', 'Low_50_vs_Low_10'};
+Probe_results_table(1,:) = Titles;
+Probe_results_table(2:end,:) = num2cell(probe_results);
+
+save([singleSUB_result_folder '/' sub_name '_Probe_results_table.mat'],'Probe_results_table')
+
+
+
+
+
+figfig=figure;
+bar(probe_results(3:end))
+hold on
+plot([0 10],[0.5 0.5],'--r')
+
+
+title('Probe')
+xlabel('comparison (%MVCs)') % x-axis label
+ylabel('Percent Choice') % y-axis label
+set(gca,'XTickLabel',{'H:90 vs 50' ,'H:90 vs 10','H:50 vs 10','M:90 vs 50' ,'M:90 vs 10','M:50 vs 10','L:90 vs 50' ,'L:90 vs 10','L:50 vs 10','' })
+
+savefig([singleSUB_result_folder '/' sub_name '_probe' ])
+saveas(figfig,[singleSUB_result_folder '/' sub_name '_probe.jpg'])
